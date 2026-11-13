@@ -163,6 +163,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 .foot-copy{color:#5f6f8f;font-size:12.5px;margin-top:20px}
 .note-dev{font-size:12px;color:#5f6f8f;max-width:640px;margin:18px auto 0}
 </style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -275,6 +276,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
       <label class="check"><input type="checkbox" id="consent" name="consent"> Autorizo que se contacten conmigo y que mi historia pueda ser evaluada, grabada y publicada en el podcast. Entiendo que estoy compartiendo datos personales de forma voluntaria. <a class="g" href="#privacidad">Aviso de privacidad</a></label>
       <label class="check"><input type="checkbox" id="anonimo" name="anonimo"> Prefiero que, si se publica, se cambie mi nombre o se mantenga el anonimato.</label>
       <div class="hp" aria-hidden="true"><label>No llenar este campo</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAF_ylVCubkch13Sd" data-theme="dark" data-language="es" style="margin:14px 0 6px"></div>
       <div class="form-msg" id="form-msg" role="alert"></div>
       <button class="btn btn-gold" type="submit" id="form-btn" style="margin-top:6px">Enviar mi testimonio</button>
     </form>
@@ -379,6 +381,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
   var btn = document.getElementById('form-btn');
   var msg = document.getElementById('form-msg');
   var ok  = document.getElementById('form-ok');
+  var t0 = Date.now(); // para medir cuánto tarda en llenarse (los robots envían en segundos)
   function show(t){ msg.textContent=t; msg.classList.add('show'); }
   function done(){ form.style.display='none'; ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
   form.addEventListener('submit', function(e){
@@ -389,6 +392,11 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     if(!contacto){ show('Déjanos un correo o WhatsApp para poder contactarte.'); form.contacto.focus(); return; }
     if(!form.consent.checked){ show('Necesitamos tu autorización para poder evaluar y contactarte.'); return; }
     if(form.website.value){ done(); return; } // honeypot: bot -> fingimos éxito
+    var ms = Date.now()-t0;
+    if(ms < 5000){ done(); return; } // enviado en menos de 5 s: robot -> fingimos éxito
+    var tk = form.querySelector('[name="cf-turnstile-response"]');
+    var token = tk ? tk.value : '';
+    if(!token){ show('Estamos verificando que no eres un robot. Espera unos segundos (o marca la casilla de verificación) y vuelve a enviar.'); return; }
     if(ENDPOINT.indexOf('__APPS')===0){ show('El formulario se está terminando de configurar. Por ahora escríbenos a hola@hacedordemilagros.com'); return; }
     var orig=btn.textContent; btn.disabled=true; btn.textContent='Enviando…';
     var data=new URLSearchParams();
@@ -396,9 +404,11 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     data.append('anonimo', form.anonimo.checked?'Sí':'No');
     data.append('consent', form.consent.checked?'Sí':'No');
     data.append('origen', location.href);
+    data.append('ms', String(ms));
+    data.append('cf-turnstile-response', token);
     fetch(ENDPOINT, {method:'POST', mode:'no-cors', body:data})
       .then(function(){ done(); })
-      .catch(function(){ btn.disabled=false; btn.textContent=orig; show('No pudimos enviar tu testimonio. Intenta de nuevo o escríbenos a hola@hacedordemilagros.com'); });
+      .catch(function(){ btn.disabled=false; btn.textContent=orig; if(window.turnstile){ try{ turnstile.reset(); }catch(_){} } show('No pudimos enviar tu testimonio. Intenta de nuevo o escríbenos a hola@hacedordemilagros.com'); });
   });
 })();
 </script>
