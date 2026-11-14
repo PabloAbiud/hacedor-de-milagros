@@ -161,6 +161,9 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 .foot-social{display:flex;gap:16px;justify-content:center;margin:14px 0;color:var(--muted)}
 .foot-social a:hover{color:var(--goldb)}
 .foot-copy{color:#5f6f8f;font-size:12.5px;margin-top:20px}
+.notify-msg{font-size:15px;color:var(--cream);margin-top:12px;min-height:0}
+.notify-msg.ok{font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;color:var(--gold)}
+.notify-ts{margin-top:10px}
 .note-dev{font-size:12px;color:#5f6f8f;max-width:640px;margin:18px auto 0}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -199,7 +202,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
         <button class="btn btn-gold" type="submit">Avísame del estreno</button>
       </form>
       <a class="btn btn-wa" href="#" style="font-size:15px;padding:11px 20px">Únete al canal de WhatsApp</a>
-      <div class="hint">Recibe cada nueva historia y un devocional breve. Sin spam, cancelas cuando quieras.</div>
+      <div class="hint">Te avisamos por correo cada vez que salga un testimonio nuevo. Sin publicidad; te das de baja con un clic. Al enviar aceptas recibir estos avisos. <a class="g" href="#privacidad">Aviso de privacidad</a></div>
     </div>
 
     <div class="plat-row">
@@ -348,6 +351,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
         <input type="email" placeholder="Tu correo electrónico" aria-label="Correo electrónico">
         <button class="btn btn-gold" type="submit">Avísame del estreno</button>
       </form>
+      <div class="hint">Solo para avisarte de testimonios nuevos. Te das de baja con un clic. <a class="g" href="#privacidad">Aviso de privacidad</a></div>
     </div>
   </div>
 </section>
@@ -368,7 +372,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
       <a href="#privacidad">Privacidad</a>
     </div>
     <div class="foot-plat">Spotify · YouTube · Apple Podcasts · Amazon Music · RSS</div>
-    <div id="privacidad" class="note-dev">Aviso de privacidad: tus datos se usan únicamente para contactarte y evaluar tu testimonio; no se comparten con terceros sin tu permiso. (Pendiente de redactar la versión completa antes del lanzamiento.)</div>
+    <div id="privacidad" class="note-dev">Aviso de privacidad: tus datos se usan únicamente para contactarte, evaluar tu testimonio y, si lo pediste, avisarte por correo de testimonios nuevos; no se comparten con terceros sin tu permiso. (Pendiente de redactar la versión completa antes del lanzamiento.)</div>
     <div class="foot-copy">© 2026 Hacedor de Milagros · Historias reales de fe</div>
   </div>
 </footer>
@@ -409,6 +413,51 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     fetch(ENDPOINT, {method:'POST', mode:'no-cors', body:data})
       .then(function(){ done(); })
       .catch(function(){ btn.disabled=false; btn.textContent=orig; if(window.turnstile){ try{ turnstile.reset(); }catch(_){} } show('No pudimos enviar tu testimonio. Intenta de nuevo o escríbenos a hola@hacedordemilagros.com'); });
+  });
+})();
+</script>
+
+<script>
+/* "Avísame del estreno": guarda el correo para avisar cuando haya un testimonio nuevo */
+(function(){
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbzlNcoU7Ek14uQi3grxYjw2VtStVCsCbEvi8ek-6tyFiyABt-dLEF1oxUuFJ8yjyr01/exec";
+  var SITEKEY = "0x4AAAAAAF_ylVCubkch13Sd";
+  var forms = document.querySelectorAll('.notify form');
+  Array.prototype.forEach.call(forms, function(f){
+    f.removeAttribute('onsubmit');
+    f.setAttribute('novalidate','');
+    var input = f.querySelector('input[type="email"]'), btn = f.querySelector('button');
+    var hp = document.createElement('input'); hp.type='text'; hp.name='website'; hp.tabIndex=-1; hp.autocomplete='off';
+    var hpw = document.createElement('div'); hpw.className='hp'; hpw.setAttribute('aria-hidden','true'); hpw.appendChild(hp); f.appendChild(hpw);
+    var box = document.createElement('div'); box.className='notify-ts';
+    var msg = document.createElement('div'); msg.className='notify-msg'; msg.setAttribute('role','status');
+    f.parentNode.insertBefore(box, f.nextSibling); f.parentNode.insertBefore(msg, box.nextSibling);
+    var wid = null, busy = false, orig = btn.textContent;
+    function say(t, ok){ msg.textContent = t; msg.className = 'notify-msg' + (ok ? ' ok' : ''); }
+    function libre(){ busy = false; btn.disabled = false; btn.textContent = orig; }
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(busy) return;
+      var correo = input.value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)){ say('Escribe un correo válido para poder avisarte.'); input.focus(); return; }
+      if(hp.value){ f.style.display='none'; say('¡Listo! Te avisaremos cuando salga el próximo testimonio.', true); return; }
+      if(!window.turnstile){ say('Estamos cargando la verificación. Intenta de nuevo en unos segundos.'); return; }
+      busy = true; btn.disabled = true; btn.textContent = 'Enviando…'; say('');
+      function enviar(token){
+        var data = new URLSearchParams();
+        data.append('tipo','suscripcion'); data.append('correo', correo);
+        data.append('origen', location.href); data.append('cf-turnstile-response', token);
+        fetch(ENDPOINT, {method:'POST', mode:'no-cors', body:data})
+          .then(function(){ f.style.display='none'; box.style.display='none'; say('¡Listo! Te avisaremos cuando salga el próximo testimonio.', true); })
+          .catch(function(){ libre(); say('No pudimos guardar tu correo. Intenta de nuevo o escríbenos a hola@hacedordemilagros.com'); });
+      }
+      try{
+        if(wid !== null){ turnstile.remove(wid); wid = null; }
+        wid = turnstile.render(box, {sitekey: SITEKEY, theme: 'dark', language: 'es', appearance: 'interaction-only',
+          callback: enviar,
+          'error-callback': function(){ libre(); say('No pudimos verificar que no eres un robot. Recarga la página e intenta de nuevo.'); }});
+      }catch(_){ libre(); say('No pudimos verificar que no eres un robot. Recarga la página e intenta de nuevo.'); }
+    });
   });
 })();
 </script>
