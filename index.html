@@ -110,7 +110,14 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .field{margin-bottom:17px}
 .field label{display:block;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;margin-bottom:7px;color:var(--cream)}
 .field input,.field textarea{width:100%;background:#0b1836;border:1px solid rgba(247,241,227,.16);border-radius:12px;padding:13px 15px;color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;resize:vertical}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.field select{width:100%;background:#0b1836;border:1px solid rgba(247,241,227,.16);border-radius:12px;padding:13px 40px 13px 15px;color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23F4B740' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;cursor:pointer}
+.field select option{background:#0b1836;color:#f7f1e3}
+.tel{display:flex;gap:10px}
+.tel select{flex:0 0 42%;min-width:0}
+.tel input{flex:1;min-width:0}
+.field-hint{font-size:13.5px;color:var(--muted);margin-top:8px}
+@media(max-width:520px){.tel{flex-direction:column}.tel select{flex:auto}}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);margin-bottom:14px}
 .check input{margin-top:4px;flex:0 0 auto}
 .disclaimer{font-size:12.5px;color:var(--muted2);background:rgba(244,183,64,.08);border:1px solid rgba(244,183,64,.2);border-radius:12px;padding:12px 15px;margin:4px 0 18px}
@@ -271,8 +278,9 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     <p class="lead">Cuéntanoslo. Cada historia puede renovar la fe de alguien más. Leemos todo con respeto y, si se publica, siempre con tu consentimiento. Puedes pedir que usemos un nombre distinto o mantener el anonimato.</p>
     <form class="form-card" id="form-testi" novalidate>
       <div class="field"><label for="nombre">Nombre (o cómo quieres aparecer)</label><input id="nombre" name="nombre" type="text" placeholder="Tu nombre, o 'anónimo'" autocomplete="name"></div>
-      <div class="field"><label for="pais">País</label><input id="pais" name="pais" type="text" placeholder="¿Desde dónde nos escribes?"></div>
-      <div class="field"><label for="contacto">Correo o WhatsApp <span class="req">*</span></label><input id="contacto" name="contacto" type="text" placeholder="Para poder contactarte" required></div>
+      <div class="field"><label for="pais">País</label><select id="pais" name="pais"><option value="">Elige tu país</option><option value="Argentina" data-lada="+54">Argentina</option><option value="Bolivia" data-lada="+591">Bolivia</option><option value="Chile" data-lada="+56">Chile</option><option value="Colombia" data-lada="+57">Colombia</option><option value="Costa Rica" data-lada="+506">Costa Rica</option><option value="Cuba" data-lada="+53">Cuba</option><option value="Ecuador" data-lada="+593">Ecuador</option><option value="El Salvador" data-lada="+503">El Salvador</option><option value="España" data-lada="+34">España</option><option value="Estados Unidos" data-lada="+1">Estados Unidos</option><option value="Guatemala" data-lada="+502">Guatemala</option><option value="Guinea Ecuatorial" data-lada="+240">Guinea Ecuatorial</option><option value="Honduras" data-lada="+504">Honduras</option><option value="México" data-lada="+52">México</option><option value="Nicaragua" data-lada="+505">Nicaragua</option><option value="Panamá" data-lada="+507">Panamá</option><option value="Paraguay" data-lada="+595">Paraguay</option><option value="Perú" data-lada="+51">Perú</option><option value="Puerto Rico" data-lada="+1">Puerto Rico</option><option value="República Dominicana" data-lada="+1">República Dominicana</option><option value="Uruguay" data-lada="+598">Uruguay</option><option value="Venezuela" data-lada="+58">Venezuela</option><option value="Otro país">Otro país</option></select></div>
+      <div class="field"><label for="correo">Correo electrónico</label><input id="correo" name="correo" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" inputmode="email"></div>
+      <div class="field"><label for="wa">WhatsApp</label><div class="tel"><select id="lada" name="lada" aria-label="Código de país"><option value="">Lada</option><option value="+54" data-pais="Argentina">Argentina (+54)</option><option value="+591" data-pais="Bolivia">Bolivia (+591)</option><option value="+56" data-pais="Chile">Chile (+56)</option><option value="+57" data-pais="Colombia">Colombia (+57)</option><option value="+506" data-pais="Costa Rica">Costa Rica (+506)</option><option value="+53" data-pais="Cuba">Cuba (+53)</option><option value="+593" data-pais="Ecuador">Ecuador (+593)</option><option value="+503" data-pais="El Salvador">El Salvador (+503)</option><option value="+34" data-pais="España">España (+34)</option><option value="+1" data-pais="Estados Unidos">Estados Unidos (+1)</option><option value="+502" data-pais="Guatemala">Guatemala (+502)</option><option value="+240" data-pais="Guinea Ecuatorial">Guinea Ecuatorial (+240)</option><option value="+504" data-pais="Honduras">Honduras (+504)</option><option value="+52" data-pais="México">México (+52)</option><option value="+505" data-pais="Nicaragua">Nicaragua (+505)</option><option value="+507" data-pais="Panamá">Panamá (+507)</option><option value="+595" data-pais="Paraguay">Paraguay (+595)</option><option value="+51" data-pais="Perú">Perú (+51)</option><option value="+1" data-pais="Puerto Rico">Puerto Rico (+1)</option><option value="+1" data-pais="República Dominicana">República Dominicana (+1)</option><option value="+598" data-pais="Uruguay">Uruguay (+598)</option><option value="+58" data-pais="Venezuela">Venezuela (+58)</option><option value="otra">Otra</option></select><input id="wa" name="wa" type="tel" placeholder="Tu número, sin el código de país" autocomplete="tel-national" inputmode="tel"></div><div class="field-hint">Déjanos al menos uno de los dos, correo o WhatsApp, para poder contactarte. <span class="req">*</span></div></div>
       <div class="field"><label for="historia">Tu historia <span class="req">*</span></label><textarea id="historia" name="historia" rows="5" placeholder="¿Qué pasó? ¿Cómo intervino Dios? Cuéntalo con tus palabras." required></textarea></div>
       <div class="field"><label for="respaldo">¿Quién podría confirmar tu historia? (opcional)</label><input id="respaldo" name="respaldo" type="text" placeholder="Tu pastor, un testigo, un médico, un documento…"></div>
       <div class="disclaimer">🎙️ Si prefieres, puedes enviarnos una <strong>nota de voz</strong> por WhatsApp — a veces es más fácil contarlo hablando. Y recuerda: este podcast comparte testimonios de fe y <strong>no sustituye la atención médica profesional</strong>.</div>
@@ -388,12 +396,24 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
   var t0 = Date.now(); // para medir cuánto tarda en llenarse (los robots envían en segundos)
   function show(t){ msg.textContent=t; msg.classList.add('show'); }
   function done(){ form.style.display='none'; ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+  // Al elegir el país, se propone su código para WhatsApp (se puede cambiar).
+  form.pais.addEventListener('change', function(){
+    var o=form.pais.options[form.pais.selectedIndex], l=o && o.getAttribute('data-lada');
+    if(!l || form.wa.value.trim()) return;
+    for(var i=0;i<form.lada.options.length;i++){ if(form.lada.options[i].getAttribute('data-pais')===o.value){ form.lada.selectedIndex=i; break; } }
+  });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     msg.textContent=''; msg.classList.remove('show');
-    var contacto=form.contacto.value.trim(), historia=form.historia.value.trim();
+    var correo=form.correo.value.trim(), historia=form.historia.value.trim();
+    var waNum=form.wa.value.replace(/[^\d+]/g,''), lada=form.lada.value;
+    var wa = waNum ? ((lada && lada!=='otra' && waNum.charAt(0)!=='+') ? lada+' '+waNum : waNum) : '';
+    var contacto=[correo, wa ? 'WhatsApp '+wa : ''].filter(Boolean).join(' · ');
     if(!historia){ show('Cuéntanos tu historia antes de enviar 🙏'); form.historia.focus(); return; }
-    if(!contacto){ show('Déjanos un correo o WhatsApp para poder contactarte.'); form.contacto.focus(); return; }
+    if(!correo && !wa){ show('Déjanos un correo o un WhatsApp para poder contactarte.'); form.correo.focus(); return; }
+    if(correo && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)){ show('Revisa tu correo: parece que le falta algo.'); form.correo.focus(); return; }
+    if(wa && waNum.replace(/\D/g,'').length < 7){ show('Revisa tu número de WhatsApp: parece incompleto.'); form.wa.focus(); return; }
+    if(wa && !lada){ show('Elige el código de país de tu WhatsApp.'); form.lada.focus(); return; }
     if(!form.consent.checked){ show('Necesitamos tu autorización para poder evaluar y contactarte.'); return; }
     if(form.website.value){ done(); return; } // honeypot: bot -> fingimos éxito
     var ms = Date.now()-t0;
@@ -404,7 +424,8 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     if(ENDPOINT.indexOf('__APPS')===0){ show('El formulario se está terminando de configurar. Por ahora escríbenos a hola@hacedordemilagros.com'); return; }
     var orig=btn.textContent; btn.disabled=true; btn.textContent='Enviando…';
     var data=new URLSearchParams();
-    ['nombre','pais','contacto','historia','respaldo'].forEach(function(k){ data.append(k, form[k].value.trim()); });
+    ['nombre','pais','historia','respaldo'].forEach(function(k){ data.append(k, form[k].value.trim()); });
+    data.append('contacto', contacto); data.append('correo', correo); data.append('whatsapp', wa);
     data.append('anonimo', form.anonimo.checked?'Sí':'No');
     data.append('consent', form.consent.checked?'Sí':'No');
     data.append('origen', location.href);
