@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hacedor de Milagros — Podcast cristiano de testimonios reales</title>
-<meta name="description" content="Podcast cristiano en español de testimonios reales de milagros. Historias de fe y esperanza para todo el mundo hispano. Comparte tu testimonio o escúchalo muy pronto.">
+<title>Hacedor de Milagros — Podcast de testimonios de milagros</title>
+<link rel="canonical" href="https://hacedordemilagros.com/">
+<meta name="description" content="Podcast cristiano de testimonios reales de milagros, para todo el mundo hispano. Escucha historias de fe y comparte el milagro que Dios hizo en tu vida.">
 <meta name="keywords" content="testimonios de milagros, testimonios cristianos reales, podcast cristiano, historias de fe, milagros reales">
 <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
 <meta property="og:type" content="website">
@@ -12,7 +13,7 @@
 <meta property="og:description" content="Podcast cristiano en español de testimonios reales de milagros, para todo el mundo hispano.">
 <meta property="og:image" content="https://hacedordemilagros.com/og.jpg">
 <meta property="og:url" content="https://hacedordemilagros.com">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hacedor de Milagros — Historias reales de fe">
 <meta name="twitter:description" content="Podcast cristiano en español de testimonios reales de milagros, para todo el mundo hispano.">
@@ -64,6 +65,7 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding-top:64px;padding-bottom:40px}
 .hero .logo{width:120px;height:120px;filter:drop-shadow(0 6px 30px rgba(244,183,64,.25))}
 .hero h1{font-size:clamp(40px,7.5vw,78px);font-weight:900;line-height:1.02;letter-spacing:-1.5px}
+.hero h1 .tl{display:block;margin-top:20px;line-height:1.6}
 .hero .tl{font-family:'Outfit',sans-serif;font-size:clamp(13px,2.2vw,17px);font-weight:600;letter-spacing:7px;text-transform:uppercase;color:var(--goldb)}
 .hero .sub{color:var(--muted);font-size:clamp(16px,2.3vw,20px);max-width:600px}
 
@@ -92,6 +94,7 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
 .plat-card{display:flex;align-items:center;gap:13px;background:var(--soft);border:1px solid rgba(247,241,227,.1);border-radius:16px;padding:18px 20px;font-family:'Outfit',sans-serif;font-weight:600;transition:border .15s,transform .15s}
 .plat-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.plat-card.soon:hover{border-color:rgba(247,241,227,.1);transform:none}
 .plat-card .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto;color:#fff;font-size:17px}
 .plat-card small{display:block;color:var(--muted2);font-weight:400;font-size:12px;font-family:'Inter',sans-serif}
 @media(max-width:760px){.plat-grid{grid-template-columns:1fr 1fr}}
@@ -182,11 +185,12 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 .foot-plat{color:var(--muted2);font-size:14px;margin-top:8px}
 .foot-social{display:flex;gap:16px;justify-content:center;margin:14px 0;color:var(--muted)}
 .foot-social a:hover{color:var(--goldb)}
-.foot-copy{color:#5f6f8f;font-size:12.5px;margin-top:20px}
+.foot-copy{color:#8293b3;font-size:13px;margin-top:20px}
 .notify-msg{font-size:15px;color:var(--cream);margin-top:12px;min-height:0}
 .notify-msg.ok{font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;color:var(--gold)}
 .notify-ts{margin-top:10px}
-.note-dev{font-size:12px;color:#5f6f8f;max-width:640px;margin:18px auto 0}
+.note-dev{font-size:13px;color:#8293b3;max-width:640px;margin:18px auto 0}
+.note-dev a,.notify .hint a,.check a{text-decoration:underline;text-underline-offset:2px}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <!-- Datos estructurados (schema.org) para que Google identifique la marca y sus canales -->
@@ -246,12 +250,12 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     <a class="btn btn-gold" href="#avisame">Avísame del estreno</a>
   </div>
 </header>
+<main>
 
 <section class="hero" id="inicio">
   <div class="wrap">
     <svg class="logo" aria-label="Logo Hacedor de Milagros"><use href="#burst"/></svg>
-    <h1>Hacedor de <span class="g">Milagros</span></h1>
-    <div class="tl">Historias reales de fe</div>
+    <h1>Hacedor de <span class="g">Milagros</span><span class="tl">Testimonios reales de milagros</span></h1>
     <p class="sub">Un podcast cristiano en español donde personas comunes cuentan el milagro que transformó su vida. Para todo el mundo hispano.</p>
 
     <div class="notify" id="avisame">
@@ -259,7 +263,6 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
         <input type="email" placeholder="Tu correo electrónico" aria-label="Correo electrónico" required>
         <button class="btn btn-gold" type="submit">Avísame del estreno</button>
       </form>
-      <a class="btn btn-wa" href="#" style="font-size:15px;padding:11px 20px">Únete al canal de WhatsApp</a>
       <div class="hint">Te avisamos por correo cada vez que salga un testimonio nuevo. Sin publicidad; te das de baja con un clic. Al enviar aceptas recibir estos avisos. <a class="g" href="#privacidad">Aviso de privacidad</a></div>
     </div>
 
@@ -299,12 +302,12 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     <h2 class="title">Muy pronto en tus plataformas</h2>
     <p class="lead">Síguenos para no perderte el primer episodio. Estará disponible en:</p>
     <div class="plat-grid">
-      <a class="plat-card" href="#"><span class="ic" style="background:#1db954">♪</span><span>Spotify<small>Próximamente</small></span></a>
+      <div class="plat-card soon"><span class="ic" style="background:#1db954">♪</span><span>Spotify<small>Próximamente</small></span></div>
       <a class="plat-card" href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener"><span class="ic" style="background:#ff0033">▶</span><span>YouTube<small>Ver canal</small></span></a>
-      <a class="plat-card" href="#"><span class="ic" style="background:#9933cc">￮</span><span>Apple Podcasts<small>Próximamente</small></span></a>
-      <a class="plat-card" href="#"><span class="ic" style="background:#00a8e1">▸</span><span>Amazon Music<small>Próximamente</small></span></a>
-      <a class="plat-card" href="#"><span class="ic" style="background:#f59b23">≋</span><span>iVoox<small>Próximamente</small></span></a>
-      <a class="plat-card" href="#"><span class="ic" style="background:#ee802f">❯</span><span>Feed RSS<small>Para cualquier app</small></span></a>
+      <div class="plat-card soon"><span class="ic" style="background:#9933cc">￮</span><span>Apple Podcasts<small>Próximamente</small></span></div>
+      <div class="plat-card soon"><span class="ic" style="background:#00a8e1">▸</span><span>Amazon Music<small>Próximamente</small></span></div>
+      <div class="plat-card soon"><span class="ic" style="background:#f59b23">≋</span><span>iVoox<small>Próximamente</small></span></div>
+      <div class="plat-card soon"><span class="ic" style="background:#ee802f">❯</span><span>Feed RSS<small>Próximamente</small></span></div>
     </div>
   </div>
 </section>
@@ -429,12 +432,13 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
   </div>
 </section>
 
+</main>
 <footer id="contacto">
   <div class="wrap">
     <div class="foot-brand"><svg aria-hidden="true"><use href="#burst"/></svg> Hacedor de Milagros</div>
     <div class="foot-plat">Escríbenos: <a class="g" href="mailto:hola@hacedordemilagros.com">hola@hacedordemilagros.com</a></div>
     <div class="foot-social">
-      <a href="#">Instagram</a><a href="#">Facebook</a><a href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener">YouTube</a><a href="#">TikTok</a>
+      <a href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener">YouTube</a>
     </div>
     <div class="foot-links">
       <a href="#que-es">Qué es</a>
