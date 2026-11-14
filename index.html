@@ -174,6 +174,42 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 .note-dev{font-size:12px;color:#5f6f8f;max-width:640px;margin:18px auto 0}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<!-- Datos estructurados (schema.org) para que Google identifique la marca y sus canales -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hacedordemilagros.com/#org",
+      "name": "Hacedor de Milagros",
+      "url": "https://hacedordemilagros.com/",
+      "logo": "https://hacedordemilagros.com/apple-touch-icon.png",
+      "email": "hola@hacedordemilagros.com",
+      "slogan": "Donde Cristo sigue haciendo milagros",
+      "sameAs": ["https://www.youtube.com/@podcasthacedordemilagros"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hacedordemilagros.com/#website",
+      "name": "Hacedor de Milagros",
+      "url": "https://hacedordemilagros.com/",
+      "inLanguage": "es",
+      "publisher": { "@id": "https://hacedordemilagros.com/#org" }
+    },
+    {
+      "@type": "PodcastSeries",
+      "@id": "https://hacedordemilagros.com/#podcast",
+      "name": "Hacedor de Milagros",
+      "url": "https://hacedordemilagros.com/",
+      "description": "Podcast cristiano en español de testimonios reales de milagros, para todo el mundo hispano.",
+      "inLanguage": "es",
+      "image": "https://hacedordemilagros.com/og.jpg",
+      "publisher": { "@id": "https://hacedordemilagros.com/#org" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -214,7 +250,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 
     <div class="plat-row">
       <a class="chip" href="#escuchalo"><span>▶ Spotify</span></a>
-      <a class="chip" href="#escuchalo"><span>▶ YouTube</span></a>
+      <a class="chip" href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener"><span>▶ YouTube</span></a>
       <a class="chip" href="#escuchalo"><span>Apple Podcasts</span></a>
       <a class="chip" href="#escuchalo"><span>Amazon Music</span></a>
     </div>
@@ -249,7 +285,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     <p class="lead">Síguenos para no perderte el primer episodio. Estará disponible en:</p>
     <div class="plat-grid">
       <a class="plat-card" href="#"><span class="ic" style="background:#1db954">♪</span><span>Spotify<small>Próximamente</small></span></a>
-      <a class="plat-card" href="#"><span class="ic" style="background:#ff0033">▶</span><span>YouTube<small>Próximamente</small></span></a>
+      <a class="plat-card" href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener"><span class="ic" style="background:#ff0033">▶</span><span>YouTube<small>Ver canal</small></span></a>
       <a class="plat-card" href="#"><span class="ic" style="background:#9933cc">￮</span><span>Apple Podcasts<small>Próximamente</small></span></a>
       <a class="plat-card" href="#"><span class="ic" style="background:#00a8e1">▸</span><span>Amazon Music<small>Próximamente</small></span></a>
       <a class="plat-card" href="#"><span class="ic" style="background:#f59b23">≋</span><span>iVoox<small>Próximamente</small></span></a>
@@ -369,7 +405,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     <div class="foot-brand"><svg aria-hidden="true"><use href="#burst"/></svg> Hacedor de Milagros</div>
     <div class="foot-plat">Escríbenos: <a class="g" href="mailto:hola@hacedordemilagros.com">hola@hacedordemilagros.com</a></div>
     <div class="foot-social">
-      <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="#">TikTok</a>
+      <a href="#">Instagram</a><a href="#">Facebook</a><a href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener">YouTube</a><a href="#">TikTok</a>
     </div>
     <div class="foot-links">
       <a href="#que-es">Qué es</a>
