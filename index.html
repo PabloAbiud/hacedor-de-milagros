@@ -122,6 +122,21 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .check input{margin-top:4px;flex:0 0 auto}
 .disclaimer{font-size:12.5px;color:var(--muted2);background:rgba(244,183,64,.08);border:1px solid rgba(244,183,64,.2);border-radius:12px;padding:12px 15px;margin:4px 0 18px}
 .req{color:var(--gold)}
+[hidden]{display:none!important}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.adj{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn-adj{display:inline-flex;align-items:center;gap:7px;font-family:'Outfit',sans-serif;font-weight:600;font-size:15px;color:var(--cream);background:rgba(244,183,64,.10);border:1px solid rgba(244,183,64,.45);border-radius:999px;padding:11px 18px;cursor:pointer;transition:background .15s ease}
+.btn-adj:hover{background:rgba(244,183,64,.2)}
+.btn-adj:disabled{opacity:.5;cursor:default}
+.btn-adj.stop{background:#c0392b;border-color:#c0392b;color:#fff;margin-left:auto}
+.field label.btn-adj{margin-bottom:0;font-size:15px}
+.rec{display:flex;align-items:center;gap:10px;margin-top:12px;padding:12px 15px;border-radius:12px;background:rgba(192,57,43,.14);border:1px solid rgba(231,76,60,.5);color:var(--cream);font-size:15px}
+.rec-dot{width:12px;height:12px;border-radius:50%;background:#e74c3c;animation:recp 1s infinite}
+@keyframes recp{50%{opacity:.25}}
+.adj-item{margin-top:12px;padding:12px 15px;border-radius:12px;background:#0b1836;border:1px solid rgba(247,241,227,.16)}
+.adj-top{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--cream);font-size:15px;word-break:break-word}
+.adj-x{background:none;border:none;color:var(--gold);font-family:'Inter',sans-serif;font-size:14px;text-decoration:underline;cursor:pointer;flex:none}
+.adj-item audio{width:100%;margin-top:10px}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 .form-msg{font-size:13.5px;color:#ffc2a8;margin:0;min-height:0;transition:margin .2s}
 .form-msg.show{margin:2px 0 10px}
@@ -317,10 +332,24 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
       <div class="field"><label for="pais">País</label><select id="pais" name="pais"><option value="">Elige tu país</option><option value="Argentina" data-lada="+54">Argentina</option><option value="Bolivia" data-lada="+591">Bolivia</option><option value="Chile" data-lada="+56">Chile</option><option value="Colombia" data-lada="+57">Colombia</option><option value="Costa Rica" data-lada="+506">Costa Rica</option><option value="Cuba" data-lada="+53">Cuba</option><option value="Ecuador" data-lada="+593">Ecuador</option><option value="El Salvador" data-lada="+503">El Salvador</option><option value="España" data-lada="+34">España</option><option value="Estados Unidos" data-lada="+1">Estados Unidos</option><option value="Guatemala" data-lada="+502">Guatemala</option><option value="Guinea Ecuatorial" data-lada="+240">Guinea Ecuatorial</option><option value="Honduras" data-lada="+504">Honduras</option><option value="México" data-lada="+52">México</option><option value="Nicaragua" data-lada="+505">Nicaragua</option><option value="Panamá" data-lada="+507">Panamá</option><option value="Paraguay" data-lada="+595">Paraguay</option><option value="Perú" data-lada="+51">Perú</option><option value="Puerto Rico" data-lada="+1">Puerto Rico</option><option value="República Dominicana" data-lada="+1">República Dominicana</option><option value="Uruguay" data-lada="+598">Uruguay</option><option value="Venezuela" data-lada="+58">Venezuela</option><option value="Otro país">Otro país</option></select></div>
       <div class="field"><label for="correo">Correo electrónico</label><input id="correo" name="correo" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" inputmode="email"></div>
       <div class="field"><label for="wa">WhatsApp</label><div class="tel"><select id="lada" name="lada" aria-label="Código de país"><option value="">Lada</option><option value="+54" data-pais="Argentina">Argentina (+54)</option><option value="+591" data-pais="Bolivia">Bolivia (+591)</option><option value="+56" data-pais="Chile">Chile (+56)</option><option value="+57" data-pais="Colombia">Colombia (+57)</option><option value="+506" data-pais="Costa Rica">Costa Rica (+506)</option><option value="+53" data-pais="Cuba">Cuba (+53)</option><option value="+593" data-pais="Ecuador">Ecuador (+593)</option><option value="+503" data-pais="El Salvador">El Salvador (+503)</option><option value="+34" data-pais="España">España (+34)</option><option value="+1" data-pais="Estados Unidos">Estados Unidos (+1)</option><option value="+502" data-pais="Guatemala">Guatemala (+502)</option><option value="+240" data-pais="Guinea Ecuatorial">Guinea Ecuatorial (+240)</option><option value="+504" data-pais="Honduras">Honduras (+504)</option><option value="+52" data-pais="México">México (+52)</option><option value="+505" data-pais="Nicaragua">Nicaragua (+505)</option><option value="+507" data-pais="Panamá">Panamá (+507)</option><option value="+595" data-pais="Paraguay">Paraguay (+595)</option><option value="+51" data-pais="Perú">Perú (+51)</option><option value="+1" data-pais="Puerto Rico">Puerto Rico (+1)</option><option value="+1" data-pais="República Dominicana">República Dominicana (+1)</option><option value="+598" data-pais="Uruguay">Uruguay (+598)</option><option value="+58" data-pais="Venezuela">Venezuela (+58)</option><option value="otra">Otra</option></select><input id="wa" name="wa" type="tel" placeholder="Tu número, sin el código de país" autocomplete="tel-national" inputmode="tel"></div><div class="field-hint">Déjanos al menos uno de los dos, correo o WhatsApp, para poder contactarte. <span class="req">*</span></div></div>
-      <div class="field"><label for="historia">Tu historia <span class="req">*</span></label><textarea id="historia" name="historia" rows="5" placeholder="¿Qué pasó? ¿Cómo intervino Dios? Cuéntalo con tus palabras." required></textarea></div>
+      <div class="field"><label for="historia">Tu historia <span class="req">*</span></label>
+        <div class="field-hint" style="margin:0 0 9px">Escríbela, grábala con tu voz o súbela en un archivo. Con una de las tres formas basta.</div>
+        <textarea id="historia" name="historia" rows="5" placeholder="¿Qué pasó? ¿Cómo intervino Dios? Cuéntalo con tus palabras."></textarea>
+        <div class="adj">
+          <button type="button" class="btn-adj" id="rec-btn">🎙️ Grabar mi historia</button>
+          <label class="btn-adj" for="audio-file">🎵 Subir un audio</label>
+          <label class="btn-adj" for="doc-file">📄 Subir Word o PDF</label>
+          <input type="file" id="audio-file" class="vh" accept="audio/*,.m4a,.mp3,.wav,.ogg,.opus,.aac,.amr,.3gp,.webm,.mp4">
+          <input type="file" id="doc-file" class="vh" accept=".doc,.docx,.pdf,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </div>
+        <div class="rec" id="rec-box" hidden><span class="rec-dot"></span><span>Grabando <strong id="rec-time">0:00</strong> de 5:00</span><button type="button" class="btn-adj stop" id="rec-stop">■ Detener</button></div>
+        <div class="adj-item" id="audio-item" hidden><div class="adj-top"><span id="audio-name"></span><button type="button" class="adj-x" id="audio-x">Quitar</button></div><audio id="audio-prev" controls preload="metadata"></audio></div>
+        <div class="adj-item" id="doc-item" hidden><div class="adj-top"><span id="doc-name"></span><button type="button" class="adj-x" id="doc-x">Quitar</button></div></div>
+        <div class="field-hint">Audio: hasta 5 minutos al grabar, o un archivo de hasta 10 MB. Documento: Word o PDF de hasta 10 MB.</div>
+      </div>
       <div class="field"><label for="respaldo">¿Quién podría confirmar tu historia? (opcional)</label><input id="respaldo" name="respaldo" type="text" placeholder="Tu pastor, un testigo, un médico, un documento…"></div>
-      <div class="disclaimer">🎙️ Si prefieres, puedes enviarnos una <strong>nota de voz</strong> por WhatsApp — a veces es más fácil contarlo hablando. Y recuerda: este podcast comparte testimonios de fe y <strong>no sustituye la atención médica profesional</strong>.</div>
-      <label class="check"><input type="checkbox" id="consent" name="consent"> Autorizo que se contacten conmigo y que mi historia —que puede incluir datos sensibles, como creencias religiosas o de salud— pueda ser evaluada, grabada y publicada en el podcast. He leído el <a class="g" href="/aviso-de-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y doy mi consentimiento de forma libre y voluntaria.</label>
+      <div class="disclaimer">Recuerda: este podcast comparte testimonios de fe y <strong>no sustituye la atención médica profesional</strong>.</div>
+      <label class="check"><input type="checkbox" id="consent" name="consent"> <span>Autorizo que se contacten conmigo y que mi historia —que puede incluir datos sensibles, como creencias religiosas o de salud— pueda ser evaluada, grabada y publicada en el podcast. He leído el <a class="g" href="/aviso-de-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y doy mi consentimiento de forma libre y voluntaria.</span></label>
       <label class="check"><input type="checkbox" id="anonimo" name="anonimo"> Prefiero que, si se publica, se cambie mi nombre o se mantenga el anonimato.</label>
       <div class="hp" aria-hidden="true"><label>No llenar este campo</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAF_ylVCubkch13Sd" data-theme="dark" data-language="es" style="margin:14px 0 6px"></div>
@@ -331,7 +360,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
       <div class="ok-ic">✓</div>
       <h3>¡Gracias por confiarnos tu historia!</h3>
       <p>La recibimos con mucho respeto. La leeremos en oración y, si necesitamos conocer más detalles, te contactaremos por el medio que nos dejaste. No todas las historias se publican, pero todas las valoramos.</p>
-      <p class="ok-sub">¿Prefieres contárnoslo hablando? Mándanos una nota de voz a <a href="mailto:hola@hacedordemilagros.com">hola@hacedordemilagros.com</a>.</p>
+      <p class="ok-sub">¿Te faltó agregar algo? Escríbenos a <a href="mailto:hola@hacedordemilagros.com">hola@hacedordemilagros.com</a>.</p>
     </div>
 
     <div class="verify" id="verificacion">
@@ -423,33 +452,148 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 
 <script>
 (function(){
-  var ENDPOINT = "https://script.google.com/macros/s/AKfycbzlNcoU7Ek14uQi3grxYjw2VtStVCsCbEvi8ek-6tyFiyABt-dLEF1oxUuFJ8yjyr01/exec"; // <- se reemplaza con la liga del Web App de Apps Script
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbzlNcoU7Ek14uQi3grxYjw2VtStVCsCbEvi8ek-6tyFiyABt-dLEF1oxUuFJ8yjyr01/exec";
   var form = document.getElementById('form-testi');
   if(!form) return;
   var btn = document.getElementById('form-btn');
   var msg = document.getElementById('form-msg');
   var ok  = document.getElementById('form-ok');
   var t0 = Date.now(); // para medir cuánto tarda en llenarse (los robots envían en segundos)
+  var MAX_BYTES = 10 * 1024 * 1024;   // 10 MB por archivo
+  var MAX_SEG = 300;                  // 5 minutos de grabación
+  function $(id){ return document.getElementById(id); }
   function show(t){ msg.textContent=t; msg.classList.add('show'); }
   function done(){ form.style.display='none'; ok.hidden=false; ok.scrollIntoView({behavior:'smooth',block:'center'}); }
+  function mmss(s){ s=Math.max(0,Math.round(s)); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+  function ext(n){ var m=/\.([a-z0-9]{1,5})$/i.exec(n||''); return m ? m[1].toLowerCase() : ''; }
+
+  /* ---------- WhatsApp: dígitos exactos según el país ---------- */
+  var DIG = {'Argentina':[10,11],'Bolivia':[8,8],'Chile':[9,9],'Colombia':[10,10],'Costa Rica':[8,8],'Cuba':[8,8],'Ecuador':[9,9],
+    'El Salvador':[8,8],'España':[9,9],'Estados Unidos':[10,10],'Guatemala':[8,8],'Guinea Ecuatorial':[9,9],'Honduras':[8,8],
+    'México':[10,10],'Nicaragua':[8,8],'Panamá':[8,8],'Paraguay':[9,9],'Perú':[9,9],'Puerto Rico':[10,10],
+    'República Dominicana':[10,10],'Uruguay':[8,9],'Venezuela':[10,10]};
+  function ladaOpt(){ return form.lada.options[form.lada.selectedIndex]; }
+  function rango(){ var o=ladaOpt(), p=o && o.getAttribute('data-pais'); return (p && DIG[p]) ? DIG[p] : [7,15]; }
+  function ajustarWa(){
+    var r=rango();
+    form.wa.maxLength = 24;   // deja escribir espacios o guiones; abajo se quedan solo los dígitos
+    form.wa.value = form.wa.value.replace(/\D/g,'').slice(0, r[1]);
+    form.wa.placeholder = (r[0]===r[1] ? r[0] : r[0]+' a '+r[1]) + ' dígitos, sin el código de país';
+  }
+  form.wa.addEventListener('input', ajustarWa);
+  form.lada.addEventListener('change', ajustarWa);
   // Al elegir el país, se propone su código para WhatsApp (se puede cambiar).
   form.pais.addEventListener('change', function(){
     var o=form.pais.options[form.pais.selectedIndex], l=o && o.getAttribute('data-lada');
     if(!l || form.wa.value.trim()) return;
     for(var i=0;i<form.lada.options.length;i++){ if(form.lada.options[i].getAttribute('data-pais')===o.value){ form.lada.selectedIndex=i; break; } }
+    ajustarWa();
   });
+
+  /* ---------- Correo: estructura y errores de dedo ---------- */
+  var TYPOS = {'gmial.com':'gmail.com','gmai.com':'gmail.com','gmal.com':'gmail.com','gmail.co':'gmail.com','gmail.con':'gmail.com','gmail.cm':'gmail.com','gmil.com':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com',
+    'hotmial.com':'hotmail.com','hotmai.com':'hotmail.com','hotmal.com':'hotmail.com','hotmail.con':'hotmail.com','hotmail.co':'hotmail.com','hotmil.com':'hotmail.com','hormail.com':'hotmail.com',
+    'outlok.com':'outlook.com','outloo.com':'outlook.com','outlook.con':'outlook.com','outlook.co':'outlook.com',
+    'yaho.com':'yahoo.com','yahoo.con':'yahoo.com','yahoo.co':'yahoo.com','yhoo.com':'yahoo.com','yahooo.com':'yahoo.com',
+    'icloud.con':'icloud.com','iclud.com':'icloud.com','live.con':'live.com'};
+  function revisarCorreo(c){
+    if(!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(c) || /\.\./.test(c) || c.length>120) return 'Revisa tu correo: debe verse como nombre@ejemplo.com';
+    var dom=c.split('@')[1].toLowerCase();
+    if(TYPOS[dom]) return '¿Quisiste escribir '+c.split('@')[0]+'@'+TYPOS[dom]+'? Corrige tu correo y vuelve a enviar.';
+    if(/\.con$/.test(dom)) return 'Tu correo termina en ".con". ¿Quisiste escribir ".com"?';
+    return '';
+  }
+
+  /* ---------- Historia en audio o en archivo ---------- */
+  var audio = null;   // {blob, nombre, seg}
+  var doc = null;     // File
+  var AUD_EXT = ['m4a','mp4','mp3','wav','ogg','oga','opus','aac','amr','3gp','webm'];
+  var DOC_EXT = ['doc','docx','pdf'];
+  var recBtn=$('rec-btn'), recBox=$('rec-box'), recTime=$('rec-time'), recStop=$('rec-stop');
+  var audItem=$('audio-item'), audName=$('audio-name'), audPrev=$('audio-prev'), docItem=$('doc-item'), docName=$('doc-name');
+  var rec=null, chunks=[], tick=null, recT0=0, stream=null;
+
+  if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder)) recBtn.hidden = true;
+
+  function ponerAudio(blob, nombre, seg){
+    audio = {blob:blob, nombre:nombre, seg:seg||0};
+    audName.textContent = '🎙️ ' + (seg ? 'Audio listo ('+mmss(seg)+')' : nombre);
+    try{ audPrev.src = URL.createObjectURL(blob); }catch(_){}
+    audItem.hidden = false;
+  }
+  function quitarAudio(){ audio=null; audItem.hidden=true; audPrev.removeAttribute('src'); try{ audPrev.load(); }catch(_){} $('audio-file').value=''; }
+  function soltarMic(){ if(stream){ stream.getTracks().forEach(function(t){ t.stop(); }); stream=null; } clearInterval(tick); recBox.hidden=true; recBtn.disabled=false; }
+
+  recBtn.addEventListener('click', function(){
+    msg.textContent=''; msg.classList.remove('show');
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
+      stream = s; chunks = [];
+      var tipos=['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus'], tipo='';
+      for(var i=0;i<tipos.length;i++){ if(MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(tipos[i])){ tipo=tipos[i]; break; } }
+      try{ rec = new MediaRecorder(s, tipo ? {mimeType:tipo, audioBitsPerSecond:32000} : {audioBitsPerSecond:32000}); }
+      catch(_){ rec = new MediaRecorder(s); }
+      rec.ondataavailable = function(ev){ if(ev.data && ev.data.size) chunks.push(ev.data); };
+      rec.onstop = function(){
+        var seg = (Date.now()-recT0)/1000, mt = (rec.mimeType||tipo||'audio/webm').split(';')[0];
+        var e = mt.indexOf('mp4')>=0 ? 'm4a' : (mt.indexOf('ogg')>=0 ? 'ogg' : 'webm');
+        soltarMic();
+        var blob = new Blob(chunks, {type: mt});
+        if(blob.size < 1000){ show('No se grabó nada. Revisa tu micrófono e intenta de nuevo.'); return; }
+        ponerAudio(blob, 'grabacion.'+e, seg);
+      };
+      recT0 = Date.now(); rec.start(1000);
+      recBtn.disabled = true; recBox.hidden = false; recTime.textContent = '0:00';
+      tick = setInterval(function(){
+        var s2=(Date.now()-recT0)/1000; recTime.textContent = mmss(s2);
+        if(s2 >= MAX_SEG && rec && rec.state==='recording') rec.stop();
+      }, 500);
+    }).catch(function(){
+      show('No pudimos usar tu micrófono. Dale permiso al navegador o sube un audio ya grabado.');
+    });
+  });
+  recStop.addEventListener('click', function(){ if(rec && rec.state==='recording') rec.stop(); });
+  $('audio-x').addEventListener('click', quitarAudio);
+
+  $('audio-file').addEventListener('change', function(){
+    var f=this.files && this.files[0]; if(!f) return;
+    msg.textContent=''; msg.classList.remove('show');
+    if(AUD_EXT.indexOf(ext(f.name))<0 && !/^audio\//.test(f.type)){ this.value=''; show('Ese archivo no parece un audio. Sube un audio (por ejemplo MP3, M4A o una nota de voz).'); return; }
+    if(f.size > MAX_BYTES){ this.value=''; show('El audio pesa más de 10 MB. Sube uno más corto o grábalo aquí mismo (hasta 5 minutos).'); return; }
+    ponerAudio(f, f.name, 0);
+  });
+  $('doc-file').addEventListener('change', function(){
+    var f=this.files && this.files[0]; if(!f) return;
+    msg.textContent=''; msg.classList.remove('show');
+    if(DOC_EXT.indexOf(ext(f.name))<0){ this.value=''; show('Sube tu historia en Word (.docx o .doc) o en PDF.'); return; }
+    if(f.size > MAX_BYTES){ this.value=''; show('El archivo pesa más de 10 MB. Sube uno más ligero.'); return; }
+    doc = f; docName.textContent = '📄 ' + f.name; docItem.hidden = false;
+  });
+  $('doc-x').addEventListener('click', function(){ doc=null; docItem.hidden=true; $('doc-file').value=''; });
+
+  function aBase64(blob){
+    return new Promise(function(res, rej){
+      var r = new FileReader();
+      r.onload = function(){ var s=String(r.result); res(s.slice(s.indexOf(',')+1)); };
+      r.onerror = rej; r.readAsDataURL(blob);
+    });
+  }
+
+  /* ---------- Envío ---------- */
   form.addEventListener('submit', function(e){
     e.preventDefault();
     msg.textContent=''; msg.classList.remove('show');
+    if(rec && rec.state==='recording'){ show('Sigues grabando. Pulsa "Detener" antes de enviar.'); return; }
     var correo=form.correo.value.trim(), historia=form.historia.value.trim();
-    var waNum=form.wa.value.replace(/[^\d+]/g,''), lada=form.lada.value;
-    var wa = waNum ? ((lada && lada!=='otra' && waNum.charAt(0)!=='+') ? lada+' '+waNum : waNum) : '';
+    var waNum=form.wa.value.replace(/\D/g,''), lada=form.lada.value, r=rango();
+    var wa = waNum ? ((lada && lada!=='otra') ? lada+' '+waNum : '+'+waNum) : '';
     var contacto=[correo, wa ? 'WhatsApp '+wa : ''].filter(Boolean).join(' · ');
-    if(!historia){ show('Cuéntanos tu historia antes de enviar 🙏'); form.historia.focus(); return; }
-    if(!correo && !wa){ show('Déjanos un correo o un WhatsApp para poder contactarte.'); form.correo.focus(); return; }
-    if(correo && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)){ show('Revisa tu correo: parece que le falta algo.'); form.correo.focus(); return; }
-    if(wa && waNum.replace(/\D/g,'').length < 7){ show('Revisa tu número de WhatsApp: parece incompleto.'); form.wa.focus(); return; }
-    if(wa && !lada){ show('Elige el código de país de tu WhatsApp.'); form.lada.focus(); return; }
+    if(!historia && !audio && !doc){ show('Cuéntanos tu historia: escríbela, grábala o sube un archivo 🙏'); form.historia.focus(); return; }
+    if(historia && historia.length < 40 && !audio && !doc){ show('Cuéntanos un poco más: ¿qué pasó y cómo intervino Dios? Con unos renglones basta.'); form.historia.focus(); return; }
+    if(!correo && !waNum){ show('Déjanos un correo o un WhatsApp para poder contactarte.'); form.correo.focus(); return; }
+    if(correo){ var ec=revisarCorreo(correo); if(ec){ show(ec); form.correo.focus(); return; } }
+    if(waNum && !lada){ show('Elige el código de país de tu WhatsApp.'); form.lada.focus(); return; }
+    if(waNum && (waNum.length < r[0] || waNum.length > r[1])){
+      show('Tu WhatsApp debe tener ' + (r[0]===r[1] ? r[0] : 'de '+r[0]+' a '+r[1]) + ' dígitos (sin el código de país). Escribiste ' + waNum.length + '.'); form.wa.focus(); return; }
     if(!form.consent.checked){ show('Necesitamos tu autorización para poder evaluar y contactarte.'); return; }
     if(form.website.value){ done(); return; } // honeypot: bot -> fingimos éxito
     var ms = Date.now()-t0;
@@ -457,8 +601,9 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     var tk = form.querySelector('[name="cf-turnstile-response"]');
     var token = tk ? tk.value : '';
     if(!token){ show('Estamos verificando que no eres un robot. Espera unos segundos (o marca la casilla de verificación) y vuelve a enviar.'); return; }
-    if(ENDPOINT.indexOf('__APPS')===0){ show('El formulario se está terminando de configurar. Por ahora escríbenos a hola@hacedordemilagros.com'); return; }
-    var orig=btn.textContent; btn.disabled=true; btn.textContent='Enviando…';
+    var orig=btn.textContent; btn.disabled=true;
+    btn.textContent = (audio || doc) ? 'Enviando… puede tardar un momento' : 'Enviando…';
+    function fallo(){ btn.disabled=false; btn.textContent=orig; if(window.turnstile){ try{ turnstile.reset(); }catch(_){} } show('No pudimos enviar tu testimonio. Revisa tu conexión e intenta de nuevo, o escríbenos a hola@hacedordemilagros.com'); }
     var data=new URLSearchParams();
     ['nombre','pais','historia','respaldo'].forEach(function(k){ data.append(k, form[k].value.trim()); });
     data.append('contacto', contacto); data.append('correo', correo); data.append('whatsapp', wa);
@@ -467,10 +612,14 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     data.append('origen', location.href);
     data.append('ms', String(ms));
     data.append('cf-turnstile-response', token);
-    fetch(ENDPOINT, {method:'POST', mode:'no-cors', body:data})
-      .then(function(){ done(); })
-      .catch(function(){ btn.disabled=false; btn.textContent=orig; if(window.turnstile){ try{ turnstile.reset(); }catch(_){} } show('No pudimos enviar tu testimonio. Intenta de nuevo o escríbenos a hola@hacedordemilagros.com'); });
+    var pasos = [];
+    if(audio) pasos.push(aBase64(audio.blob).then(function(b){ data.append('audio_b64', b); data.append('audio_nombre', audio.nombre); data.append('audio_seg', String(Math.round(audio.seg||0))); }));
+    if(doc)   pasos.push(aBase64(doc).then(function(b){ data.append('doc_b64', b); data.append('doc_nombre', doc.name); }));
+    Promise.all(pasos).then(function(){
+      return fetch(ENDPOINT, {method:'POST', mode:'no-cors', body:data});
+    }).then(function(){ done(); }).catch(fallo);
   });
+  ajustarWa();
 })();
 </script>
 
