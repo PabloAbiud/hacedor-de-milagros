@@ -167,6 +167,9 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .host-photo{aspect-ratio:1;border-radius:20px;background:linear-gradient(160deg,#16294f,#0b1836);border:1px dashed rgba(244,183,64,.4);display:grid;place-items:center;text-align:center;color:var(--muted2);font-size:13px;padding:18px}
 .host-photo svg{width:60px;height:60px;opacity:.5;margin-bottom:8px}
 .edit{color:var(--goldb);font-size:12px;font-family:'Outfit',sans-serif;letter-spacing:.5px}
+.about-grid.solo{grid-template-columns:1fr;max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+.about-grid.solo .lead{margin-left:auto;margin-right:auto}
+#nosotros .kicker{text-align:center}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr;text-align:center}.host-photo{max-width:220px;margin:0 auto}}
 .verse{font-family:'Outfit',sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,32px);color:var(--goldb);max-width:820px;margin:34px auto 6px;line-height:1.3;text-align:center}
 .verse-cite{font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;text-align:center}
@@ -393,14 +396,11 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 <section class="sec-pad about" id="nosotros">
   <div class="wrap">
     <div class="kicker">Quién está detrás</div>
-    <div class="about-grid">
-      <div class="host-photo">
-        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-        <div class="edit">[ Tu foto aquí ]</div></div>
-      </div>
+    <div class="about-grid solo">
       <div>
         <h2 class="title" style="font-size:clamp(24px,3.4vw,32px)">Un proyecto hecho con fe</h2>
-        <p class="lead"><em>[Texto editable]</em> Soy <strong>[tu nombre]</strong>, y empecé <strong>Hacedor de Milagros</strong> porque creo que las historias de lo que Dios hace siguen cambiando vidas. Frente a tanto ruido y miedo, quiero dar voz a los testimonios reales que casi nunca se cuentan. Este proyecto nace desde México, pero es para todo el mundo hispanohablante. <span class="edit">(Reemplaza este texto con tu historia, tu congregación y por qué lo haces.)</span></p>
+        <p class="lead">Soy <strong>Pablo Abiud Cabadas Reyna</strong>, padre de familia, inquieto y lleno de ideas, pero con una guía firme en mi vida: Jesús. Sin Él nada, con Él todo.</p>
+        <p class="lead" style="margin-top:16px">Hice <strong>Hacedor de Milagros</strong> para contrarrestar la marea de morbo, maldad y chisme que inunda la red. Quiero que sea una luz para el espíritu y un lugar para escuchar más del poder de Dios, porque Sus milagros nos siguen alcanzando.</p>
       </div>
     </div>
     <div class="verse">“Porque ninguna cosa es imposible para Dios.”</div>
