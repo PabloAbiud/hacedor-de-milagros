@@ -78,7 +78,9 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .notify input{flex:1;min-width:220px;background:#0b1836;border:1px solid rgba(247,241,227,.2);border-radius:999px;padding:14px 20px;color:var(--cream);font-size:16px;font-family:'Inter',sans-serif}
 .notify input:focus{outline:none;border-color:var(--gold)}
 .notify .hint{font-size:13.5px;color:var(--muted2)}
-.plat-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:4px}
+.plat-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin-top:4px}
+.plat-row .chip{min-height:44px;padding:9px 18px}
+.plat-row .chip .i{width:14px;height:14px;color:#ff4d6a}
 .chip{display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:var(--cream);background:rgba(22,41,79,.7);border:1px solid rgba(247,241,227,.14);border-radius:999px;padding:9px 16px}
 .chip:hover{border-color:var(--gold)}
 
@@ -275,10 +277,8 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
     </div>
 
     <div class="plat-row">
-      <a class="chip" href="#escuchalo"><span>▶ Spotify</span></a>
-      <a class="chip" href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener"><span>▶ YouTube</span></a>
-      <a class="chip" href="#escuchalo"><span>Apple Podcasts</span></a>
-      <a class="chip" href="#escuchalo"><span>Amazon Music</span></a>
+      <a class="btn btn-ghost" href="#testimonio">Comparte tu testimonio</a>
+      <a class="chip" href="https://www.youtube.com/@podcasthacedordemilagros" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg><span>Síguenos en YouTube</span></a>
     </div>
 
     <div class="videowrap" id="video">
