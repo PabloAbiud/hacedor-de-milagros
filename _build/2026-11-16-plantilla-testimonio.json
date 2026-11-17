@@ -1,0 +1,37 @@
+{
+  "borrador": true,
+  "slug": "sanidad-de-cancer-maria",
+  "publicado": "2026-12-01",
+  "categoria": "sanidad",
+  "titulo": "Título que cuenta la historia en una frase (va en grande en la página)",
+  "titulo_seo": "Versión corta para Google, máximo 60 caracteres (opcional)",
+  "descripcion": "Una o dos frases que invitan a ver el testimonio. Máximo 155 caracteres.",
+  "persona": "María",
+  "anonimo": false,
+  "nombre_cambiado": false,
+  "pais": "Colombia",
+  "youtube_id": "AbCdEfGhIjK",
+  "duracion": "PT18M32S",
+  "spotify": null,
+  "apple": null,
+  "resumen": [
+    "Primer párrafo: quién es la persona y qué estaba viviendo.",
+    "Segundo párrafo: qué pasó y cómo vio la mano de Dios."
+  ],
+  "versiculo": {
+    "texto": "Texto exacto en Reina-Valera 1960, sin comillas.",
+    "cita": "Salmo 103:3"
+  },
+  "momentos": [
+    {"t": "0:00", "texto": "Quién es María"},
+    {"t": "3:15", "texto": "El diagnóstico"}
+  ],
+  "verificacion": [
+    "Qué revisamos para respaldar la historia: documentos, testigos o el aval de su pastor."
+  ],
+  "transcripcion": [
+    "Párrafos de la transcripción (opcional)."
+  ],
+  "og_imagen": null,
+  "consentimiento": true
+}

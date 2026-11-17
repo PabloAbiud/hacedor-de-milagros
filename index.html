@@ -122,6 +122,8 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);backgroun
 .scard p{color:var(--muted);font-size:14.5px}
 .scard .soon{color:var(--muted2);font-size:12.5px;margin-top:12px;font-family:'Outfit',sans-serif;letter-spacing:1px;text-transform:uppercase}
 @media(max-width:760px){.stories .cards{grid-template-columns:1fr}}
+a.scard{display:block;color:var(--cream);text-decoration:none!important;transition:border-color .15s}
+a.scard:hover{border-color:var(--goldb)}
 
 .testi{background:radial-gradient(60% 60% at 80% 15%,#16294f,#0f1e40 60%,#0a1530)}
 .form-card{margin-top:30px;background:rgba(10,21,48,.5);border:1px solid rgba(244,183,64,.22);border-radius:22px;padding:clamp(22px,4vw,42px);max-width:720px}
@@ -351,6 +353,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
 
 <section class="sec-pad stories" id="historias">
   <div class="wrap">
+    <!-- testimonios:inicio -->
     <div class="kicker">Primeras historias</div>
     <h2 class="title">Las primeras historias vienen en camino</h2>
     <p class="lead">Testimonios reales de todo el mundo hispano — México, Colombia, Argentina, España y más. Estos son algunos de los temas que escucharás:</p>
@@ -359,6 +362,7 @@ footer{background:var(--deep);border-top:1px solid rgba(247,241,227,.08);padding
       <div class="scard"><span class="tag">Provisión</span><h3>Lo que llegó justo a tiempo</h3><p>Testimonios de provisión en medio de la crisis, cuando las cuentas no cerraban.</p><div class="soon">En preparación</div></div>
       <div class="scard"><span class="tag">Restauración</span><h3>Familias que volvieron a empezar</h3><p>Relaciones rotas, adicciones y heridas que encontraron un nuevo comienzo.</p><div class="soon">En preparación</div></div>
     </div>
+    <!-- testimonios:fin -->
   </div>
 </section>
 
