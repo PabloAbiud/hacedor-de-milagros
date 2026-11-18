@@ -1,5 +1,7 @@
-import re
+import re, sys, os
 from pathlib import Path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cabecera as cab
 # Raíz del sitio (la carpeta que contiene _build/)
 REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / 'aviso-de-privacidad.html'
@@ -7,7 +9,6 @@ a=open(SRC,encoding='utf-8').read()
 BASE_CSS=re.search(r'<style>(.*?)</style>',a,re.S).group(1)
 BURST=re.search(r'(<svg width="0" height="0".*?</svg>)',a,re.S).group(1)
 EXTRA_CSS='''
-footer{color:#8293b3}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;padding:14px 26px;border-radius:999px;min-height:48px;text-decoration:none!important}
 .btn-gold{background:var(--gold);color:var(--deep)}
 .btn-gold:hover{background:var(--goldb)}
@@ -30,15 +31,15 @@ details p{margin:0 0 14px}
 code.copy{display:block;background:#0b1836;border:1px solid rgba(247,241,227,.16);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--cream);white-space:normal;margin:12px 0}
 .small{font-size:14px;color:var(--muted2)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media(max-width:480px){.back .lg{display:none}.brand{font-size:17px}}
 '''
-def pagina(*, ruta, titulo, descripcion, og_titulo, jsonld, cuerpo):
+def pagina(*, ruta, titulo, descripcion, og_titulo, jsonld, cuerpo, actual=None):
     url=f'https://hacedordemilagros.com{ruta}'
     return f'''<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{cab.THEME}
 <title>{titulo}</title>
 <link rel="canonical" href="{url}">
 <meta name="description" content="{descripcion}">
@@ -57,7 +58,7 @@ def pagina(*, ruta, titulo, descripcion, og_titulo, jsonld, cuerpo):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>{BASE_CSS}{EXTRA_CSS}</style>
+<style>{BASE_CSS}{EXTRA_CSS}{cab.CSS}{cab.CSS_PIE}</style>
 <script type="application/ld+json">
 {jsonld}
 </script>
@@ -66,24 +67,17 @@ def pagina(*, ruta, titulo, descripcion, og_titulo, jsonld, cuerpo):
 
 {BURST}
 
-<header class="nav">
-  <div class="nav-in">
-    <a class="brand" href="/" aria-label="Hacedor de Milagros, inicio"><svg aria-hidden="true"><use href="#burst"/></svg> Hacedor de Milagros</a>
-    <a class="back" href="/">← <span class="lg">Volver al </span>inicio</a>
-  </div>
-</header>
+{cab.cabecera(actual)}
 
-<main>
+<main id="contenido">
   <div class="wrap">
 {cuerpo}
   </div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <a href="/">Hacedor de Milagros</a> · <a href="/madrugada-de-oracion/">Madrugada de Oración</a> · <a href="/como-contar-tu-testimonio/">Cómo contar tu testimonio</a> · <a href="/iglesias/">Para iglesias</a> · <a href="/aviso-de-privacidad.html">Aviso de Privacidad</a><br>© 2026 · Historias reales de fe
-  </div>
-</footer>
+{cab.pie()}
+
+<script>{cab.JS}</script>
 
 </body>
 </html>

@@ -171,7 +171,7 @@ cuerpo = f'''    <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a> �
 }})();
 </script>'''
 
-html = pagina(ruta=RUTA,
+html = pagina(ruta=RUTA, actual='madrugada',
               titulo='Madrugada de Oración en vivo | Hacedor de Milagros',
               descripcion=DESC,
               og_titulo='Madrugada de Oración en vivo — Hacedor de Milagros',

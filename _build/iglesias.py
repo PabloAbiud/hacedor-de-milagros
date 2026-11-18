@@ -82,7 +82,7 @@ cuerpo = f'''    <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a> �
       <a class="btn btn-ghost" href="/#nosotros">Quién está detrás</a>
     </div>'''
 
-html = pagina(ruta=RUTA,
+html = pagina(ruta=RUTA, actual='iglesias',
               titulo='Para iglesias y pastores | Hacedor de Milagros',
               descripcion=DESC,
               og_titulo='Para iglesias y pastores — Hacedor de Milagros',
